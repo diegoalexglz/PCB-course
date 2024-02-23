@@ -352,9 +352,9 @@ In order to be able to use our created component:
 
 Following all previous 18 steps, we get this:
 
-![image-20240223110617651](./images/im_05.png)
+<a name="PowerSupply"></a>
 
-<a name="imagen"></a>
+![image-20240223110617651](./images/im_05.png)
 
 ------
 
@@ -426,6 +426,10 @@ What we're trying to achieve with this is merely the outline of the component, a
 
 ![image-20240223123151333](./images/im_11.png)
 
-7. Draw the **pads** (pins)
+7. Place the **pads** (pins) from the UB
 
-[Enlace a la imagen](#imagen)
+> [!IMPORTANT]
+>
+> The pads placed will have a default number, we must make them coincide with the ones from our schematic. In this case, they are 15, 16 and 17 for VIN, GND and VOUT, respectively. See the [Pins numbers](#PowerSupply) image.
+
+8. 
