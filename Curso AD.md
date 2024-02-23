@@ -1,3 +1,7 @@
+[TOC]
+
+
+
 # CREATE A PROJECT
 
 1. Click on File -> New -> Project.
@@ -107,7 +111,7 @@ They let us select specific elements contained in the sheet. For example, if we 
 
 
 
-
+------
 
 # FIRST SCH DESIGN
 
@@ -249,6 +253,8 @@ Steps:
 
 
 
+------
+
 # COMPONENT PROPERTIES
 
 The important properties found in '<u>General</u>' are:
@@ -261,6 +267,8 @@ The important properties found in '<u>Parameters</u>' are:
 - Value: it's the actual value (in ohms, farads, volts, etc) of the element.
 
 
+
+------
 
 # CREATE A CUSTOM COMPONENT
 
@@ -321,6 +329,18 @@ In the new <u>.SchLib</u> window:
 It must look like this:
 
 ![image-20240222222221364](./images/im_04.png)
+
+
+
+## Add Lib to the project
+
+In order to be able to use our created component:
+
+1. Go to 'Projects' tab
+2. Right-click on the <u>.LibPkg</u> file and click on '**Compile integrated library** myCustomLib.LibPkg' 
+3. **Install** the lib as described in the Note [Here](#Components-sidebar-(CS)).
+
+
 
 
 
