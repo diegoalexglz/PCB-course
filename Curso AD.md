@@ -85,6 +85,8 @@ There, we can select an element and if we click on `ⓘ` button (it appears by m
 
 
 
+#### Install local library
+
 > [!TIP]
 >
 > By clicking on `☰` -> 'file-based libraries preferences' -> 'installed', we can add new libraries from our local.
@@ -338,7 +340,7 @@ In order to be able to use our created component:
 
 1. Go to 'Projects' tab
 2. Right-click on the <u>.LibPkg</u> file and click on '**Compile integrated library** myCustomLib.LibPkg' 
-3. **Install** the lib as described in the Note [Here](#Components-sidebar-(CS)).
+3. **Install** the lib as described in the Note [Here](#Install-local-library).
 
 
 
