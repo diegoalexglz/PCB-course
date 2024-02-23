@@ -4,3 +4,4 @@ Project Outputs for myCustomLib/**
 Proyecto_1_MyMCU/**
 *.LibPkg
 *.SchLib
+*.PcbLib

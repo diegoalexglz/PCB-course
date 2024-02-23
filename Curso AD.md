@@ -1,7 +1,3 @@
-[TOC]
-
-
-
 # CREATE A PROJECT
 
 1. Click on File -> New -> Project.
@@ -214,7 +210,7 @@ This allows us to see what do we have connected to a certain port.
 
 
 
-## Final design
+## Final design 1 (battery)
 
 Steps:
 
@@ -278,7 +274,7 @@ Let's suppose we need to use **LM1117** and we don't have it in AD.
 
 
 
-## Setting up the Lib and Doc
+## Setting up the Sch Lib and Doc
 
 First:
 
@@ -292,7 +288,7 @@ Then, in AD:
 
 5. Right-click on the new created <u>.LibPkg</u> file and select 'Add new to project' -> 'Schematic library'
 
-**In a Schematic Lib we can create components**.
+**In a Schematic Lib we can create Sch components**.
 
 In the new <u>.SchLib</u> window:
 
@@ -338,12 +334,98 @@ It must look like this:
 
 In order to be able to use our created component:
 
-1. Go to 'Projects' tab
-2. Right-click on the <u>.LibPkg</u> file and click on '**Compile integrated library** myCustomLib.LibPkg' 
-3. **Install** the lib as described in the Note [Here](#Install-local-library).
+13. Go to 'Projects' tab
+14. Right-click on the <u>.LibPkg</u> file and click on '**Compile integrated library** myCustomLib.LibPkg' 
+15. **Remove the installed library and then, reinstall it (from CS)** as described in [Here](#Install-local-library). (The file to select is <u>myCustomLib.IntLib</u>)
 
 
 
+## Add component to sheet
+
+16. In CS, select the library from the dropdown menu
+17. Select the component and place it into the sheet
+18. Add every other needed component according to the datasheet (resistors, capacitors, ground ports)
 
 
-## Design power supply
+
+## Final design 2 (power supply)
+
+Following all previous 18 steps, we get this:
+
+![image-20240223110617651](./images/im_05.png)
+
+<a name="imagen"></a>
+
+------
+
+# CREATE A CUSTOM FOOTPRINT
+
+## Setting up the Pcb Lib
+
+Having created a custom schematic component, 
+
+1. Right-click on 'myCustomLib.LibPkg' -> Add new to project -> PCB library  
+2. `Ctrl + S` and save it as '**myCustomLib.PcbLib**'
+
+The project's tree must look like this:
+
+![image-20240223111706985](./images/im_06.png) 
+
+**In a Pcb Lib we can create Pcb footprints**.
+
+Assuming that, from the datasheet, we saw this config and want to use it for the component
+
+![image-20240223113520658](./images/im_07.png)
+
+Then, in the new <u>.PcbLib</u> window:
+
+3. Select 'PCBComponent_1' from the left sidebar and rename it to, for example '**4-PIN-SOT**'
+
+4. Look for the component's **height** in the datasheet, it must be in the last pages of the document, contained in the 'Mechanical, Packaging, and Orderable Information'.
+
+There, we'll see a header like 'DCY (R-PDSO-G4); PLASTIC SMALL-OUTLINE' and the dimensions, alonside to some notes:
+
+*All linear dimensions are in millimeters (inches).*
+
+![image-20240223114211162](./images/im_08.png)
+
+4. Set the height in the AD box. In this case, **1.7 mm** (67 mils)
+
+> [!NOTE]
+>
+> By writing 'mm' after the number, AD will automatically convert the value to mils.
+
+4. Select 'Top overlay' in the lower bar
+
+![image-20240223121114186](./images/im_09.png)
+
+> [!TIP]
+>
+> By pressing `2` or `3` in keyboard, we can access the 2D and 3D views
+
+
+
+## Drawing the component
+
+![image-20240223121441705](./images/im_10.png)
+
+5. Go to PS and change units to **mm**
+
+6. First, draw the **body**. For this:
+
+   - Place a line with `P + L`
+   - Press `J + L` and set the **length** (in this case, x=6.7 & y=0)
+   - Place another line and set the **width** (in this case, x=6.7 & y=3.7)
+   - Select and copy-paste the two lines to get the full body
+
+> [!TIP]
+>
+> After `Ctrl+C`, AD waits for us to select an starting point to make the copy, we must select the origin (x,y)=(0,0)
+
+What we're trying to achieve with this is merely the outline of the component, as in this picture:
+
+![image-20240223123151333](./images/im_11.png)
+
+7. Draw the **pads** (pins)
+
+[Enlace a la imagen](#imagen)
