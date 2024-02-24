@@ -373,7 +373,9 @@ The project's tree must look like this:
 
 **In a Pcb Lib we can create Pcb footprints**.
 
-Assuming that, from the datasheet, we saw this config and want to use it for the component
+Assuming that, from the datasheet, we saw this config and want to use it for the component.
+
+<a name="PinPackage"></a>
 
 ![image-20240223113520658](./images/im_07.png)
 
@@ -389,13 +391,13 @@ There, we'll see a header like 'DCY (R-PDSO-G4); PLASTIC SMALL-OUTLINE' and the 
 
 ![image-20240223114211162](./images/im_08.png)
 
-4. Set the height in the AD box. In this case, **1.7 mm** (67 mils)
+5. Set the height in the AD box. In this case, **1.7 mm** (67 mils)
 
 > [!NOTE]
 >
 > By writing 'mm' after the number, AD will automatically convert the value to mils.
 
-4. Select 'Top overlay' in the lower bar
+6. Select 'Top overlay' in the lower bar
 
 ![image-20240223121114186](./images/im_09.png)
 
@@ -409,9 +411,11 @@ There, we'll see a header like 'DCY (R-PDSO-G4); PLASTIC SMALL-OUTLINE' and the 
 
 ![image-20240223121441705](./images/im_10.png)
 
-5. Go to PS and change units to **mm**
+7. Go to PS and change units to **mm**
 
-6. First, draw the **body**. For this:
+### Top overlay: guidance outlines
+
+8. First, draw the **body**. For this:
 
    - Place a line with `P + L`
    - Press `J + L` and set the **length** (in this case, x=6.7 & y=0)
@@ -426,10 +430,43 @@ What we're trying to achieve with this is merely the outline of the component, a
 
 ![image-20240223123151333](./images/im_11.png)
 
-7. Place the **pads** (pins) from the UB
+### Top layer: traces andpads
+
+9. Select the 'top layer' in the lower bar.
+10. Place the **pads** (pins) from the UB **and set the correct properties**
 
 > [!IMPORTANT]
 >
-> The pads placed will have a default number, we must make them coincide with the ones from our schematic. In this case, they are 15, 16 and 17 for VIN, GND and VOUT, respectively. See the [Pins numbers](#PowerSupply) image.
+> The pads placed will have a default number, we must make them coincide with the ones from our schematic and the ones in the datasheet. In this case, they are 15, 16 and 17 for VIN, GND and VOUT, respectively. See the [Pins' Sch numbers](#PowerSupply) and the [Pin Package](#PinPackage) images.
 
-8. 
+- Designator: must be the same number of the pin in the schematic
+
+- Layer: must be 'top layer'
+
+> [!NOTE]
+>
+> Note that by default, 'Multi-Layer' option is selected, but this means that the pad will have a through-hole in it (THT), which will look like this:
+>
+> ![image-20240223184237643](./images/im_12.png)
+>
+> Instead, for this case, we just want a pad, without a hole in it (SMD). So, we select 'top layer' to get this:
+>
+> ![image-20240223184349329](./images/im_13.png)
+
+- Shape: must coincide with the datasheet. In this case, they are **rectangular**
+
+- Length (under 'pad stack'): must coincide with the datasheet's dimensions (in this case, 1mm & 2.2mm)
+
+- Location (under 'properties'): Move the pads to their correct location. For this, something useful is to change the origin.
+
+#### Change the origin
+
+Go to 'Edit' -> Set Reference -> Location
+
+The shortcut is `Alt + E + F + L`
+
+> [!NOTE]
+>
+> In AD it's easy to identify the center of a line because the cursor becomes a circle, but, for this example, we need to select 'Top overlay' in order to see it, cause it is where we drew the body.
+
+12. 
