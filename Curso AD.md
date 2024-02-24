@@ -210,7 +210,7 @@ This allows us to see what do we have connected to a certain port.
 
 
 
-## Final design 1 (battery)
+## Final Sch design 1 (battery)
 
 Steps:
 
@@ -330,7 +330,7 @@ It must look like this:
 
 
 
-## Add Lib to the project
+## Adding Lib to the project
 
 In order to be able to use our created component:
 
@@ -340,7 +340,7 @@ In order to be able to use our created component:
 
 
 
-## Add component to sheet
+## Adding component to sheet
 
 16. In CS, select the library from the dropdown menu
 17. Select the component and place it into the sheet
@@ -348,7 +348,7 @@ In order to be able to use our created component:
 
 
 
-## Final design 2 (power supply)
+## Final Sch design 2 (power supply)
 
 Following all previous 18 steps, we get this:
 
@@ -469,4 +469,36 @@ The shortcut is `Alt + E + F + L`
 >
 > In AD it's easy to identify the center of a line because the cursor becomes a circle, but, for this example, we need to select 'Top overlay' in order to see it, cause it is where we drew the body.
 
-12. 
+### Final Pcb design 1 (power supply)
+
+Our Pcb must look like this (body outline is actually yellow if seen while in 'top overlay')
+
+![image-20240224122223628](./images/im_14.png)
+
+### Linking footprint to Schematic
+
+11. Go back to the SchLib window and click on 'Add footprint' at the bottom bar.
+12. Click on 'browse'
+13. Select the PCB (in this case, '4-Pin-SOT')
+14. `Ctrl+S` to save
+15. Compile: Right-click on the <u>.LibPkg</u> file and click on 'Compile integrated lib...' 
+
+Now, we can go to 'main', open CS, select 'myCustomLib' and see the LM1117 both in Schematic and in PCB footprint, like this:
+
+![image-20240224124207200](./images/im_15.png)
+
+#### Workaround: Component in 'main' was placed before creating footprint  
+
+When we create a component in an SchLib and place it on 'main' sheet, and only after we create the pcb footprint, we'll run into an issue, because the component won't show its footprint.
+
+We can fix this by following this extra steps:
+
+16. Go to 'Tools' -> Footprint manager
+17. Select the component (e.g. LM1117)
+18. Click on 'add', then 'browse' and select its footprint
+19. Click on 'Accept changes (create ECO)', then 'Validate' and finally 'Execute changes' and 'Close'
+
+
+
+# ANNOTATE DESIGNATORS
+
