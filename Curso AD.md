@@ -105,7 +105,7 @@ They can be accesed from the 'properties' sidebar (PS) or from the upper bar (UB
 
 They let us select specific elements contained in the sheet. For example, if we only wanted to delete wires, we'd have:
 
-![image-20240222165019997](./images/im_02.png)
+<img src="images/im_02.png" width="300" style="float: center;">
 
 
 
@@ -244,10 +244,7 @@ Steps:
 >
 > Always verify that items fit correctly into the grid. If they don't, reduce the value of 'Snap grid', move the items and restore the default value again.
 
-
-![image-20240222190504086](./images/im_03.png)
-
-
+<img src="images/im_03.png" width="500" style="float: center;">
 
 
 
@@ -326,7 +323,7 @@ In the new <u>.SchLib</u> window:
 
 It must look like this:
 
-![image-20240222222221364](./images/im_04.png)
+<img src="images/im_04.png" width="350" style="float: center;">
 
 
 
@@ -354,7 +351,7 @@ Following all previous 18 steps, we get this:
 
 <a name="PowerSupply"></a>
 
-![image-20240223110617651](./images/im_05.png)
+<img src="images/im_05.png" width="450" style="float: center;">
 
 ------
 
@@ -369,7 +366,7 @@ Having created a custom schematic component,
 
 The project's tree must look like this:
 
-![image-20240223111706985](./images/im_06.png) 
+<img src="images/im_06.png" width="250" style="float: center;">
 
 **In a Pcb Lib we can create Pcb footprints**.
 
@@ -377,7 +374,7 @@ Assuming that, from the datasheet, we saw this config and want to use it for the
 
 <a name="PinPackage"></a>
 
-![image-20240223113520658](./images/im_07.png)
+<img src="images/im_07.png" width="350" style="float: center;">
 
 Then, in the new <u>.PcbLib</u> window:
 
@@ -389,7 +386,7 @@ There, we'll see a header like 'DCY (R-PDSO-G4); PLASTIC SMALL-OUTLINE' and the 
 
 *All linear dimensions are in millimeters (inches).*
 
-![image-20240223114211162](./images/im_08.png)
+<img src="images/im_08.png" width="450" style="float: center;">
 
 5. Set the height in the AD box. In this case, **1.7 mm** (67 mils)
 
@@ -409,7 +406,7 @@ There, we'll see a header like 'DCY (R-PDSO-G4); PLASTIC SMALL-OUTLINE' and the 
 
 ## Drawing the component
 
-![image-20240223121441705](./images/im_10.png)
+<img src="images/im_10.png" width="350" style="float: center;">
 
 7. Go to PS and change units to **mm**
 
@@ -428,7 +425,7 @@ There, we'll see a header like 'DCY (R-PDSO-G4); PLASTIC SMALL-OUTLINE' and the 
 
 What we're trying to achieve with this is merely the outline of the component, as in this picture:
 
-![image-20240223123151333](./images/im_11.png)
+<img src="images/im_11.png" width="350" style="float: center;">
 
 ### Top layer: traces andpads
 
@@ -447,11 +444,11 @@ What we're trying to achieve with this is merely the outline of the component, a
 >
 > Note that by default, 'Multi-Layer' option is selected, but this means that the pad will have a through-hole in it (THT), which will look like this:
 >
-> ![image-20240223184237643](./images/im_12.png)
+> <img src="images/im_12.png" width="100" style="float: center;">
 >
 > Instead, for this case, we just want a pad, without a hole in it (SMD). So, we select 'top layer' to get this:
 >
-> ![image-20240223184349329](./images/im_13.png)
+> <img src="images/im_13.png" width="100" style="float: center;">
 
 - Shape: must coincide with the datasheet. In this case, they are **rectangular**
 
@@ -473,7 +470,7 @@ The shortcut is `Alt + E + F + L`
 
 Our Pcb must look like this (body outline is actually yellow if seen while in 'top overlay')
 
-![image-20240224122223628](./images/im_14.png)
+<img src="images/im_14.png" width="250" style="float: center;">
 
 ### Linking footprint to Schematic
 
@@ -485,7 +482,7 @@ Our Pcb must look like this (body outline is actually yellow if seen while in 't
 
 Now, we can go to 'main', open CS, select 'myCustomLib' and see the LM1117 both in Schematic and in PCB footprint, like this:
 
-![image-20240224124207200](./images/im_15.png)
+<img src="images/im_15.png" width="250" style="float: center;">
 
 #### Workaround: Component in 'main' was placed before creating footprint  
 
@@ -500,5 +497,113 @@ We can fix this by following this extra steps:
 
 
 
+------
+
 # ANNOTATE DESIGNATORS
 
+If we try to validate our project (right click on '.PrjPcb' -> Validate pcb project) and we still have designators with `?` mark in them, this error will come up:
+
+<img src="images/im_16.png" width="450" style="float: center;">
+
+So, we need to do the following:
+
+1. Go to 'Tools' -> Annotation -> Annotate Sch Quietly (`Alt + T + A + U`)
+2. Click 'yes' in the 'Confirm designator changes' popup
+
+After that, our components will have a number assigned, like this:
+
+<img src="images/im_17.png" width="350" style="float: center;">
+
+If we want more control, we can choose 'Annotate schematics' and select the order in which the components are scanned to get a number.
+
+- Up then across
+- Down then across
+- Across then up
+- across then down (default)
+
+
+
+------
+
+# CREATE PCB BOARD
+
+## Creating PCB
+
+1. Right-click on '.PrjPcb' file -> Add New to project -> PCB
+
+2. `Ctrl + S` to save it (e.g. myMCU**.PcbDoc**)
+
+**Change origin**
+
+3. Change the origin: 'Edit' -> Origin -> Set (`Alt + E + O + S`)
+
+4. Set the origin in the bottom-left corner of the PCB
+
+**Change size: the Keep Out Layer**
+
+5. Select keep-out-layer (KOL).
+
+   The KOL is always used when we are working with non-physical things to be put in the PCB.
+
+6. Draw a rectangle with lines.
+
+> [!TIP]
+>
+> By pressing `Tab` we can pause the view (zoom, movement) to set the line width and the layer more comfortably.
+
+7. Select all the lines of the rectangle (it can be done by clicking on one and then pressing `Tab`)  and go to 'Design' -> Board shape -> Define board shape from selected objects (`Alt + D + S + D `)
+
+If a 'Couldn't find... use primitive edges instead?' box pops up, it's because we haven't selected all the lines, which means we have an open outline.
+
+
+
+## Adding Sch Comp to PCB	
+
+8. Go to 'main' and verify that all comps designators are annotated
+
+9. Go to 'Design' -> 'Update PCB... myMCU.PcbDoc' (`Alt + D + U`)
+
+10. Validate and execute changes
+
+We'll see our comps' footprints in the PCB enclosed by a rectangular area, known as a **room**. It's a good practice to keep it.
+
+<img src="images/im_18.png" width="550" style="float: center;">
+
+11. (Optional) Modify the designators styles (font, size)
+
+> [!NOTE]
+>
+> Now, let's notice something. If seen from afar, we'll see come colours. For example, for capacitors C1, C2 and C3 we have red, green and gray, which are the colours of their nets (5.5V, 3.3V and GND, respectively).
+>
+> But, if we zoom, we can see that those colours are mixed with other colours, the latter being the ones that help us identify which layer the objects belong to.
+>
+> <img src="images/im_19.png" width="450" style="float: center;">
+>
+> To avoid this,
+>
+> 1. Go to 'main'
+>
+> 2. Go to 'View' -> Set net colours -> Clear all net colours
+>
+> 3. Go to 'Design' -> 'Update PCB... myMCU.PcbDoc' (`Alt + D + U`)
+>
+> 4. Validate and execute changes
+>
+> Now, we can go back to PCB and see the layer colours.
+>
+> - **Top layer:** red
+> - **Top overlay:** yellow
+> - **Top solder:** purple
+> - **Multi layer:** gray
+>
+> <img src="images/im_20.png" width="450" style="float: center;">
+
+
+
+> [!TIP]
+>
+> By dragging an object with the mouse, we can see which are the connections (these tiny lines) that it has with another object by moving them closer.
+
+
+
+12. s
