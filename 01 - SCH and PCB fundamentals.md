@@ -606,4 +606,126 @@ We'll see our comps' footprints in the PCB enclosed by a rectangular area, known
 
 
 
-12. s
+> [!WARNING]
+>
+> If a component gets coloured in green, it means an error.
+>
+> Up until this point, it can possibly be because the comp is outside the room or outside the keep-out-layer lines.
+>
+> <img src="images/im_21.png" width="200" style="float: center;">
+
+
+
+### Highlight Footprint: Cross Probe
+
+To highlight a component's footprint in the PCB by selecting the component in the SCH, we can:
+
+1. Go to 'Tools' -> Cross Probe (`Alt + T + C`)
+2. Click on the component (in the SCH)
+3. Right-click on a blank space
+
+Then, when we switch back to the PCB window, we'll see that comp's footprint highlighted with a filter.
+
+
+
+### Select Footprint: Cross select
+
+<a name="CrossSelect"></a>
+
+Similarly, to select a component's footprint in the PCB by selecting the component in the SCH, we can:
+
+1. Go to 'Tools' -> Cross select mode (`Ctrl + Shift + X`)
+2. Click on the component (in the SCH)
+
+Then, when we switch back to the PCB window, we'll see that comp's footprint selected.
+
+
+
+## Arranging the comps in the PCB
+
+### Precise movement
+
+After selecting an object, we can use `Ctrl +` `↑ ↓ → ←` to move it with precision. The movement distance can be modified by pressing `G` and selecting a different value.
+
+
+
+### Allign vertical centers
+
+To allign objects,
+
+1. Select them
+2. Press `Shift + A + V`
+3. Click on the object that will remain in its same position
+
+
+
+### Detect proximity errors
+
+When there are two comps too close to each other, they will turn green. To see what's the error, we can press `Shift + V`.
+
+
+
+### Reposition footprints in order
+
+When having the [Cross-select](#CrossSelect) option **on**, we can also use **a second tool**, which allows to move each footprint from the objects we previously selected in SCH, in the order they were selected. 
+
+(While in .PcbDoc)
+
+1. Go to 'Tools' -> Comp placement -> Reposition selected comps (`Alt + T + O + C`)
+
+
+
+## Routing
+
+Going back to our original steps for creating a PCB board,
+
+12. Use 'Interactively route connections' (`Ctrl + W`) from the UB to draw a line across the components.
+12. Change the trace's width
+
+
+
+> [!WARNING]
+>
+> By default, the line's width is 10mil. If we make it any wider, e.g. 11 mil, it will turn green, as if an error. But it's not really an error. That happens due to a rule.
+>
+> To change it:
+>
+> 1. Go to 'Design' -> Rules (`Alt + D + R`)
+>
+> 2. Go to 'Routing' -> Width
+>
+> There, we'll see a solo rule that states a min and max width for all traces of 10mil.
+>
+> 3. Change the width restrictions to the desired ones
+>
+> Now we can go back to PCB and the errors in the traces will have dissapeared.
+
+
+
+> [!TIP]
+>
+> From experience, when having a THT Comp (like the Header 2H pins), its soldering can ruin the pads and traces that are connected with it if the traces are not wide enough. So, we should **try to make the trace as wide as we can** (depending on the width of the other Comps).
+>
+> In this case, for example, we should check on the capacitor pads' width, which turns out to be 43 mil:
+>
+> <img src="images/im_22.png" width="500" style="float: center;">
+>
+> And then create our trace with a 43mil width, and it will look like this:
+>
+> <img src="images/im_23.png" width="400" style="float: center;">
+
+
+
+## Final Pcb 1 (battery + power supply)
+
+14. Once routing is done, modify the room's dimensions and the KOL lines to make the PCB smaller and make it fitting to the space our comps use.
+
+Our final result is:
+
+**In 2D**
+
+<img src="images/im_24.png" width="600" style="float: center;">
+
+**In 3D**
+
+<img src="images/im_25.png" width="400" style="float: center;">
